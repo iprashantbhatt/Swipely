@@ -31,12 +31,9 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
 .live-pill{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#ef4444}
 .ldot{width:5px;height:5px;background:#ef4444;border-radius:50%;animation:ld 1.4s infinite}
 @keyframes ld{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.src-toggle{display:flex;background:var(--gbg);border:1px solid var(--gborder);border-radius:10px;overflow:hidden;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.src-btn{padding:5px 9px;font-size:11px;font-weight:600;border:none;background:transparent;color:var(--ts);cursor:pointer;transition:all .2s;white-space:nowrap}
-.src-btn.active{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff}
 .theme-btn{width:36px;height:36px;border-radius:11px;border:1px solid var(--gborder);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--gbg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--tp);transition:transform .2s}
 .theme-btn:active{transform:scale(.9)}
-.tp{position:absolute;top:calc(100% + 10px);right:0;width:205px;border-radius:18px;padding:7px;z-index:200;transform-origin:top right;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s;background:var(--gbg);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border:1px solid var(--gborder);box-shadow:0 8px 36px var(--gshadow)}
+.tp{position:absolute;top:calc(100% + 10px);right:0;width:205px;border-radius:18px;padding:7px;z-index:200;transform-origin:top right;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s;background:rgba(20,20,40,0.95);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border:1px solid var(--gborder);box-shadow:0 8px 36px var(--gshadow)}
 .tp.hide{transform:scale(.8);opacity:0;pointer-events:none}
 .tp-lbl{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--tm);padding:3px 7px 7px}
 .tp-opt{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:11px;cursor:pointer;border:none;background:transparent;color:var(--tp);width:100%;text-align:left;transition:background .15s}
@@ -47,7 +44,7 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
 .ticker{flex-shrink:0;margin:0 14px 10px;border-radius:12px;overflow:hidden;background:var(--tbg);border:1px solid var(--gborder);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);height:35px;display:flex;align-items:center}
 .t-lbl{flex-shrink:0;padding:0 11px;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ta);border-right:1px solid var(--gborder);height:100%;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.1);white-space:nowrap}
 .t-area{flex:1;overflow:hidden}
-.t-track{display:flex;white-space:nowrap;will-change:transform;animation:tick 55s linear infinite}
+.t-track{display:flex;white-space:nowrap;will-change:transform;animation:tick 20s linear infinite}
 .t-track:hover{animation-play-state:paused}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .t-item{display:inline-flex;align-items:center;padding:0 22px;font-size:12px;color:var(--ts)}
@@ -98,6 +95,21 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
 .empty-sub{font-size:12px;color:var(--tm)}
 .empty-btn{margin-top:5px;padding:10px 24px;border-radius:13px;font-size:13px;font-weight:600;border:none;cursor:pointer;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;transition:transform .2s}
 .empty-btn:active{transform:scale(.95)}
+/* SAVED LIST */
+.saved-list{flex:1;overflow-y:auto;padding:0 14px;display:flex;flex-direction:column;gap:10px}
+.saved-item{background:var(--gbg);border:1px solid var(--gborder);border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.saved-img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.saved-info{flex:1;min-width:0}
+.saved-cat{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--a1);margin-bottom:4px}
+.saved-title{font-size:13px;font-weight:600;color:var(--tp);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.saved-src{font-size:11px;color:var(--tm);margin-top:4px}
+.saved-open{width:28px;height:28px;border-radius:8px;background:var(--gbg);border:1px solid var(--gborder);display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;flex-shrink:0}
+/* SEARCH */
+.search-wrap{padding:0 14px 10px;flex-shrink:0}
+.search-box{width:100%;padding:11px 16px;border-radius:14px;border:1px solid var(--gborder);background:var(--gbg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--tp);font-size:14px;outline:none}
+.search-box::placeholder{color:var(--tm)}
+.search-results{flex:1;overflow-y:auto;padding:0 14px;display:flex;flex-direction:column;gap:10px}
+/* TABBAR */
 .tabbar{flex-shrink:0;margin:4px 14px 16px;border-radius:20px;padding:8px 14px;display:flex;justify-content:space-around;align-items:center;background:var(--gbg);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border:1px solid var(--gborder);box-shadow:0 4px 28px var(--gshadow),inset 0 1px 0 var(--gshine)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:3px 10px;border-radius:12px;transition:all .2s}
 .tab.active{background:rgba(255,255,255,.08)}
@@ -111,6 +123,7 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
 .toast.err{background:rgba(239,68,68,.85);color:#fff}
 .toast.ok{background:rgba(34,197,94,.85);color:#fff}
 .toast.show{opacity:1}
+.section-title{font-size:13px;font-weight:700;color:var(--tm);padding:4px 0 8px;letter-spacing:.4px;text-transform:uppercase}
 *{scrollbar-width:none}*::-webkit-scrollbar{display:none}
 </style>
 </head>
@@ -127,11 +140,6 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
     </div>
     <div class="nav-right">
       <div class="live-pill"><div class="ldot"></div>LIVE</div>
-      <div class="src-toggle">
-        <button class="src-btn active" onclick="setSrc('all',this)">All</button>
-        <button class="src-btn" onclick="setSrc('reddit',this)">Reddit</button>
-        <button class="src-btn" onclick="setSrc('twitter',this)">𝕏</button>
-      </div>
       <button class="theme-btn" id="themeBtn">🎨</button>
       <div class="tp hide" id="themePanel">
         <div class="tp-lbl">Theme</div>
@@ -147,9 +155,10 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
     <div class="t-lbl"><div class="ldot"></div>BREAKING</div>
     <div class="t-area"><div class="t-track" id="tickerTrack"><span class="t-item">Connecting to live sources...</span></div></div>
   </div>
-  <div class="cats">
+  <div class="cats" id="catRow">
     <button class="cat active" onclick="setCat('All',this)">All</button>
     <button class="cat" onclick="setCat('World',this)">🌍 World</button>
+    <button class="cat" onclick="setCat('India',this)">🇮🇳 India</button>
     <button class="cat" onclick="setCat('Tech',this)">💻 Tech</button>
     <button class="cat" onclick="setCat('Business',this)">📈 Business</button>
     <button class="cat" onclick="setCat('Science',this)">🔬 Science</button>
@@ -157,31 +166,69 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
     <button class="cat" onclick="setCat('Culture',this)">🎬 Culture</button>
     <button class="cat" onclick="setCat('Health',this)">🏥 Health</button>
   </div>
-  <div class="viewport">
-    <div class="hint hl" id="hintL">👎 Skip</div>
-    <div class="hint hr" id="hintR">❤️ Save</div>
-    <div class="stack" id="stack">
-      <div class="loading"><div class="spin"></div><p>Fetching live news...</p></div>
+
+  <!-- FOR YOU / FEED VIEW -->
+  <div id="feedView" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+    <div class="viewport">
+      <div class="hint hl" id="hintL">👎 Skip</div>
+      <div class="hint hr" id="hintR">❤️ Save</div>
+      <div class="stack" id="stack">
+        <div class="loading"><div class="spin"></div><p>Fetching live news...</p></div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <!-- TRENDING VIEW -->
+  <div id="trendingView" style="flex:1;display:none;flex-direction:column;overflow:hidden;padding:0 14px">
+    <div class="section-title">🔥 Trending Now</div>
+    <div class="saved-list" id="trendingList"></div>
+  </div>
+
+  <!-- SAVED VIEW -->
+  <div id="savedView" style="flex:1;display:none;flex-direction:column;overflow:hidden;padding:0 14px">
+    <div class="section-title">🔖 Saved Articles</div>
+    <div class="saved-list" id="savedList"></div>
+  </div>
+
+  <!-- SEARCH VIEW -->
+  <div id="searchView" style="flex:1;display:none;flex-direction:column;overflow:hidden">
+    <div class="search-wrap">
+      <input class="search-box" id="searchBox" type="text" placeholder="🔍 Search news..." oninput="doSearch(this.value)">
+    </div>
+    <div class="search-results" id="searchResults">
+      <div style="text-align:center;color:var(--tm);padding:40px 20px;font-size:13px;">Type to search news...</div>
     </div>
   </div>
-  <div class="dots" id="dots"></div>
+
   <div class="tabbar">
-    <div class="tab active" onclick="tabTap(this)"><div class="tab-icon">✨</div><div class="tab-lbl">For You</div></div>
-    <div class="tab" onclick="tabTap(this)"><div class="tab-icon">🔥</div><div class="tab-lbl">Trending</div></div>
-    <div class="tab" onclick="tabTap(this)"><div class="tab-icon">🔖</div><div class="tab-lbl">Saved</div></div>
-    <div class="tab" onclick="tabTap(this)"><div class="tab-icon">🔍</div><div class="tab-lbl">Search</div></div>
+    <div class="tab active" id="tab-foryou" onclick="switchTab('foryou',this)"><div class="tab-icon">✨</div><div class="tab-lbl">For You</div></div>
+    <div class="tab" id="tab-trending" onclick="switchTab('trending',this)"><div class="tab-icon">🔥</div><div class="tab-lbl">Trending</div></div>
+    <div class="tab" id="tab-saved" onclick="switchTab('saved',this)"><div class="tab-icon">🔖</div><div class="tab-lbl">Saved</div></div>
+    <div class="tab" id="tab-search" onclick="switchTab('search',this)"><div class="tab-icon">🔍</div><div class="tab-lbl">Search</div></div>
   </div>
   <div class="footer">Built with ❤️ by <a href="https://prashantbhatt.net" target="_blank">Prashant Bhatt</a></div>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- ONBOARD -->
+<div id="onboard" style="position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
+  <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:obFade 0.6s ease 4s forwards;filter:drop-shadow(0 2px 12px rgba(0,0,0,0.3));"><style>@keyframes obFadeEl{to{opacity:0}}.hand{animation:swipeHand 1.8s ease-in-out infinite}.arr{animation:arrowPulse 1.8s ease-in-out infinite}@keyframes swipeHand{0%{transform:translateX(28px)}50%{transform:translateX(-28px)}100%{transform:translateX(28px)}}@keyframes arrowPulse{0%,100%{opacity:0.3}50%{opacity:1}}</style><g class="hand"><path d="M80 60 C80 60 72 52 68 56 C64 60 68 68 68 68 L64 66 C60 64 56 66 56 70 C56 74 58 76 58 76 L56 75 C52 73 48 76 48 80 C48 84 52 88 52 88 L56 96 C60 106 68 112 80 112 C92 112 104 104 104 90 L104 70 C104 66 100 62 96 62 C94 62 92 63 91 65 C90 62 87 60 84 60 C82 60 81 61 80 62 L80 60Z" stroke="white" stroke-width="3" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/></g><g class="arr"><line x1="22" y1="72" x2="42" y2="72" stroke="white" stroke-width="2.5" stroke-linecap="round"/><polyline points="28,64 20,72 28,80" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g><g class="arr"><line x1="118" y1="72" x2="138" y2="72" stroke="white" stroke-width="2.5" stroke-linecap="round"/><polyline points="132,64 140,72 132,80" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>
+  <div style="color:white;font-size:13px;font-weight:600;letter-spacing:1px;opacity:0.8;margin-top:12px;text-transform:uppercase;animation:obFade 0.6s ease 4s forwards;">Swipe to explore</div>
+</div>
+<style>@keyframes obFade{0%{opacity:1}100%{opacity:0}}</style>
+
 <script>
 const API="";
-const REFRESH=5*60*1000;
-let articles=[],filtered=[],topIdx=0,currentCat="All",currentSrc="all";
-let saved=new Set(),dragCard=null,dragging=false,startX=0,startY=0,curX=0;
+const REFRESH=3600*1000;
+let articles=[],filtered=[],topIdx=0,currentCat="All";
+let saved=new Map();
+let dragCard=null,dragging=false,startX=0,startY=0,curX=0;
+let currentTab="foryou";
+
 async function loadNews(){
   try{
-    const q=new URLSearchParams({category:currentCat,source:currentSrc,limit:60});
+    const q=new URLSearchParams({category:currentCat,limit:80});
     const r=await fetch(`${API}/api/news?${q}`,{signal:AbortSignal.timeout(8000)});
     if(!r.ok)throw new Error(r.status);
     const d=await r.json();
@@ -189,51 +236,58 @@ async function loadNews(){
     applyFilter();renderCards();renderDots();
   }catch(e){showToast("Backend offline","err");useFallback();}
 }
+
 async function loadBreaking(){
   try{
     const r=await fetch(`${API}/api/breaking`,{signal:AbortSignal.timeout(6000)});
     const d=await r.json();
     renderTicker(d.items||[]);
-  }catch{renderTicker(["🔴 Start backend: python backend/app.py","⚡ Reddit + Twitter/X sources ready once backend is running"]);}
+  }catch{renderTicker(["🔴 Live feed loading..."]);}
 }
+
 function applyFilter(){
   filtered=articles;
   if(currentCat!=="All")filtered=filtered.filter(a=>a.category===currentCat);
-  if(currentSrc!=="all")filtered=filtered.filter(a=>a.source_type===currentSrc);
   topIdx=0;
 }
+
 function renderTicker(items){
   const d=[...items,...items];
   document.getElementById("tickerTrack").innerHTML=d.map(t=>`<span class="t-item">${t}</span>`).join("");
 }
+
 function renderCards(){
   const stack=document.getElementById("stack");
   stack.innerHTML="";
   const vis=filtered.slice(topIdx,topIdx+5);
   if(!vis.length){
-    stack.innerHTML=`<div class="empty"><div class="empty-icon">🎉</div><div class="empty-title">All caught up!</div><div class="empty-sub">${filtered.length===0?"No stories match this filter":"You've seen everything"}</div><button class="empty-btn" onclick="resetFeed()">↺ Refresh</button></div>`;
+    stack.innerHTML=`<div class="empty"><div class="empty-icon">🎉</div><div class="empty-title">All caught up!</div><div class="empty-sub">${filtered.length===0?"No stories match":"You've seen everything"}</div><button class="empty-btn" onclick="resetFeed()">↺ Refresh</button></div>`;
     return;
   }
   vis.forEach((item,i)=>stack.appendChild(makeCard(item,i)));
   const top=stack.querySelector('[data-p="0"]');
   if(top)setupDrag(top);
 }
+
 function makeCard(item,pos){
   const el=document.createElement("div");
   el.className="card";el.dataset.p=pos;el.dataset.id=item.id;
-  const si=item.source_type==="twitter"?"𝕏":"▲";
   const isSaved=saved.has(item.id);
-  el.innerHTML=`<div class="card-inner"><div class="cimg"><img src="${item.img}" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'"><div class="cimg-ov"></div><div class="cat-badge">${item.category}</div><div class="src-badge">${si} ${item.source} · ${item.time}</div></div><div class="cbody"><div class="c-hl">${item.headline}</div><div class="c-desc">${item.desc}</div><div class="c-foot"><div class="c-src"><div class="c-av" style="background:${item.color}">${item.source[0].toUpperCase()}</div><span class="c-sn">${item.source} · 💬 ${item.comments}</span></div><div class="c-acts"><div class="c-act" id="sv-${item.id}" onclick="event.stopPropagation();doSave(${item.id})">${isSaved?"✅":"🔖"}</div><a class="c-act" href="${item.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗️</a></div></div></div></div>`;
+  el.innerHTML=`<div class="card-inner"><div class="cimg"><img src="${item.img}" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'"><div class="cimg-ov"></div><div class="cat-badge">${item.category}</div><div class="src-badge">▲ ${item.source} · ${item.time}</div></div><div class="cbody"><div class="c-hl">${item.headline}</div><div class="c-desc">${item.desc}</div><div class="c-foot"><div class="c-src"><div class="c-av" style="background:${item.color}">${item.source[0].toUpperCase()}</div><span class="c-sn">${item.source}</span></div><div class="c-acts"><div class="c-act" id="sv-${item.id}" onclick="event.stopPropagation();doSave(${item.id})">${isSaved?"✅":"🔖"}</div><a class="c-act" href="${item.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗️</a></div></div></div></div>`;
   return el;
 }
+
 function renderDots(){
   const n=Math.min(filtered.length,8);
   document.getElementById("dots").innerHTML=Array.from({length:n},(_,i)=>`<div class="dot${i===topIdx%Math.max(n,1)?" on":""}"></div>`).join("");
 }
+
 function updateDots(){
   const dots=document.querySelectorAll(".dot");
   dots.forEach((d,i)=>d.classList.toggle("on",i===topIdx%Math.max(dots.length,1)));
 }
+
+// DRAG
 function setupDrag(card){
   dragCard=card;
   card.addEventListener("touchstart",ds,{passive:true});
@@ -248,19 +302,139 @@ function gy(e){return e.touches?e.touches[0].clientY:e.clientY}
 function ds(e){if(e.type!=="touchstart"&&e.button!==0)return;dragging=true;startX=gx(e);startY=gy(e);curX=0;if(dragCard)dragCard.style.transition="none";}
 function dm(e){if(!dragging)return;const dx=gx(e)-startX,dy=gy(e)-startY;if(Math.abs(dx)>Math.abs(dy)&&e.cancelable)e.preventDefault();curX=dx;if(dragCard)dragCard.style.transform=`translateX(${dx}px) rotate(${dx*.08}deg) translateY(${-Math.abs(dx)*.07}px)`;const T=60,hl=document.getElementById("hintL"),hr=document.getElementById("hintR");if(dx<-T){hl.style.opacity=Math.min(1,(Math.abs(dx)-T)/60);hr.style.opacity=0;}else if(dx>T){hr.style.opacity=Math.min(1,(dx-T)/60);hl.style.opacity=0;}else{hl.style.opacity=0;hr.style.opacity=0;}}
 function de(){if(!dragging)return;dragging=false;window.removeEventListener("mousemove",dm);window.removeEventListener("mouseup",de);document.getElementById("hintL").style.opacity=0;document.getElementById("hintR").style.opacity=0;if(Math.abs(curX)>90)swipe(curX>0?"right":"left");else if(dragCard){dragCard.style.transition="transform .4s cubic-bezier(.34,1.56,.64,1)";dragCard.style.transform="translateY(0) scale(1)";}}
-function swipe(dir){if(!dragCard)return;const card=dragCard;card.style.transition="transform .42s cubic-bezier(.55,0,1,.5),opacity .42s";card.style.transform=dir==="left"?"translateX(-160%) rotate(-20deg)":"translateX(160%) rotate(20deg)";card.style.opacity="0";setTimeout(()=>{card.remove();topIdx++;renderCards();updateDots();},400);}
-document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){dragCard=document.querySelector('[data-p="0"]');if(dragCard){curX=-110;swipe("left");}}if(e.key==="ArrowRight"){dragCard=document.querySelector('[data-p="0"]');if(dragCard){curX=110;swipe("right");}}});
-function doSave(id){saved.add(id);const el=document.getElementById(`sv-${id}`);if(el)el.textContent="✅";showToast("Saved! 🔖","ok");}
+function swipe(dir){
+  if(!dragCard)return;
+  const card=dragCard;
+  const item=filtered[topIdx];
+  if(dir==="right"&&item) doSave(item.id);
+  card.style.transition="transform .42s cubic-bezier(.55,0,1,.5),opacity .42s";
+  card.style.transform=dir==="left"?"translateX(-160%) rotate(-20deg)":"translateX(160%) rotate(20deg)";
+  card.style.opacity="0";
+  setTimeout(()=>{card.remove();topIdx++;renderCards();updateDots();},400);
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft"){dragCard=document.querySelector('[data-p="0"]');if(dragCard){curX=-110;swipe("left");}}
+  if(e.key==="ArrowRight"){dragCard=document.querySelector('[data-p="0"]');if(dragCard){curX=110;swipe("right");}}
+});
+
+// SAVE
+function doSave(id){
+  const item=articles.find(a=>a.id===id);
+  if(!item)return;
+  if(saved.has(id)){
+    saved.delete(id);
+    const el=document.getElementById(`sv-${id}`);
+    if(el)el.textContent="🔖";
+    showToast("Removed from saved","err");
+  } else {
+    saved.set(id,item);
+    const el=document.getElementById(`sv-${id}`);
+    if(el)el.textContent="✅";
+    showToast("Saved! 🔖","ok");
+  }
+}
+
 function resetFeed(){topIdx=0;renderCards();renderDots();}
-function setCat(cat,el){currentCat=cat;document.querySelectorAll(".cat").forEach(c=>c.classList.remove("active"));el.classList.add("active");applyFilter();renderCards();renderDots();}
-function setSrc(src,el){currentSrc=src;document.querySelectorAll(".src-btn").forEach(b=>b.classList.remove("active"));el.classList.add("active");applyFilter();renderCards();renderDots();}
+
+function setCat(cat,el){
+  currentCat=cat;
+  document.querySelectorAll(".cat").forEach(c=>c.classList.remove("active"));
+  el.classList.add("active");
+  applyFilter();
+  if(currentTab==="foryou"){renderCards();renderDots();}
+  else if(currentTab==="trending"){renderTrending();}
+  else if(currentTab==="search"){doSearch(document.getElementById("searchBox").value);}
+}
+
+// TABS
+function switchTab(tab,el){
+  currentTab=tab;
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  el.classList.add("active");
+  document.getElementById("feedView").style.display="none";
+  document.getElementById("trendingView").style.display="none";
+  document.getElementById("savedView").style.display="none";
+  document.getElementById("searchView").style.display="none";
+  if(tab==="foryou"){document.getElementById("feedView").style.display="flex";renderCards();renderDots();}
+  else if(tab==="trending"){document.getElementById("trendingView").style.display="flex";renderTrending();}
+  else if(tab==="saved"){document.getElementById("savedView").style.display="flex";renderSaved();}
+  else if(tab==="search"){document.getElementById("searchView").style.display="flex";setTimeout(()=>document.getElementById("searchBox").focus(),100);}
+}
+
+// TRENDING
+function renderTrending(){
+  const list=document.getElementById("trendingList");
+  let arts=articles.slice().sort((a,b)=>b.score-a.score||b.time_ts-a.time_ts);
+  if(currentCat!=="All") arts=arts.filter(a=>a.category===currentCat);
+  if(!arts.length){list.innerHTML=`<div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No trending news</div></div>`;return;}
+  list.innerHTML=arts.slice(0,30).map(item=>`
+    <div class="saved-item">
+      <img class="saved-img" src="${item.img}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'">
+      <div class="saved-info">
+        <div class="saved-cat">${item.category}</div>
+        <div class="saved-title">${item.headline}</div>
+        <div class="saved-src">${item.source} · ${item.time}</div>
+      </div>
+      <a class="saved-open" href="${item.url}" target="_blank" rel="noopener">↗️</a>
+    </div>`).join("");
+}
+
+// SAVED
+function renderSaved(){
+  const list=document.getElementById("savedList");
+  const items=[...saved.values()];
+  if(!items.length){list.innerHTML=`<div class="empty"><div class="empty-icon">🔖</div><div class="empty-title">No saved articles</div><div class="empty-sub">Swipe right to save news</div></div>`;return;}
+  list.innerHTML=items.map(item=>`
+    <div class="saved-item">
+      <img class="saved-img" src="${item.img}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'">
+      <div class="saved-info">
+        <div class="saved-cat">${item.category}</div>
+        <div class="saved-title">${item.headline}</div>
+        <div class="saved-src">${item.source} · ${item.time}</div>
+      </div>
+      <a class="saved-open" href="${item.url}" target="_blank" rel="noopener">↗️</a>
+    </div>`).join("");
+}
+
+// SEARCH
+function doSearch(q){
+  const res=document.getElementById("searchResults");
+  if(!q.trim()){res.innerHTML=`<div style="text-align:center;color:var(--tm);padding:40px 20px;font-size:13px;">Type to search news...</div>`;return;}
+  const matches=articles.filter(a=>
+    a.headline.toLowerCase().includes(q.toLowerCase())||
+    a.desc.toLowerCase().includes(q.toLowerCase())||
+    a.source.toLowerCase().includes(q.toLowerCase())||
+    a.category.toLowerCase().includes(q.toLowerCase())
+  );
+  if(!matches.length){res.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-sub">Try different keywords</div></div>`;return;}
+  res.innerHTML=matches.map(item=>`
+    <div class="saved-item">
+      <img class="saved-img" src="${item.img}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'">
+      <div class="saved-info">
+        <div class="saved-cat">${item.category}</div>
+        <div class="saved-title">${item.headline}</div>
+        <div class="saved-src">${item.source} · ${item.time}</div>
+      </div>
+      <a class="saved-open" href="${item.url}" target="_blank" rel="noopener">↗️</a>
+    </div>`).join("");
+}
+
+// THEME
 document.getElementById("themeBtn").addEventListener("click",e=>{e.stopPropagation();document.getElementById("themePanel").classList.toggle("hide");});
 document.addEventListener("click",e=>{const p=document.getElementById("themePanel");if(!p.contains(e.target)&&e.target!==document.getElementById("themeBtn"))p.classList.add("hide");});
 function setTheme(t,el){document.documentElement.dataset.theme=t;document.querySelectorAll(".tp-ck").forEach(c=>c.style.opacity="0");el.querySelector(".tp-ck").style.opacity="1";setTimeout(()=>document.getElementById("themePanel").classList.add("hide"),260);}
-function tabTap(el){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));el.classList.add("active");}
-function showToast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=msg;t.className=`toast ${type} show`;setTimeout(()=>t.classList.remove("show"),3500);}
-function useFallback(){articles=[{id:1,source:"r/technology",source_type:"reddit",category:"Tech",headline:"Backend offline — run: python backend/app.py",desc:"Add your Reddit API credentials to backend/app.py then start the Flask server. Both Reddit and Twitter/X sources will load automatically.",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",time:"now",time_ts:Date.now()/1000,color:"#6366f1",score:0,comments:0,url:"#"},{id:2,source:"@Reuters",source_type:"twitter",category:"World",headline:"Swipe left to skip · Swipe right to save · ↗️ to open article",desc:"Use source toggle (All/Reddit/𝕏) and category pills to filter. Arrow keys also work for swiping cards.",img:"https://images.unsplash.com/photo-1524055988636-436cfa46e59e?w=600&q=80",time:"now",time_ts:Date.now()/1000,color:"#10b981",score:0,comments:0,url:"#"}];applyFilter();renderCards();renderDots();}
-(async function(){await Promise.all([loadNews(),loadBreaking()]);setInterval(()=>{loadNews();loadBreaking();},REFRESH);})();
+
+// TOAST
+function showToast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=msg;t.className=`toast ${type} show`;setTimeout(()=>t.classList.remove("show"),3000);}
+
+// FALLBACK
+function useFallback(){articles=[{id:1,source:"RSS",source_type:"rss",category:"Tech",headline:"Backend offline — check VPS",desc:"Run: sudo systemctl restart swipely",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",time:"now",time_ts:Date.now()/1000,color:"#6366f1",score:0,comments:0,url:"#"}];applyFilter();renderCards();renderDots();}
+
+(async function(){
+  await Promise.all([loadNews(),loadBreaking()]);
+  setInterval(()=>{loadNews();loadBreaking();},REFRESH);
+})();
 </script>
 </body>
 </html>
