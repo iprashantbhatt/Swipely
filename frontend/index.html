@@ -75,7 +75,10 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
 .card[data-p="2"]{transform:translateY(46px)scale(.91);z-index:8;transition:transform .4s cubic-bezier(.34,1.2,.64,1) .05s}
 .card[data-p="3"]{transform:translateY(62px)scale(.87);z-index:7;pointer-events:none;transition:transform .4s cubic-bezier(.34,1.2,.64,1) .1s}
 .card[data-p="4"]{transform:translateY(74px)scale(.84);z-index:6;pointer-events:none;transition:transform .4s cubic-bezier(.34,1.2,.64,1) .15s}
-.card-inner{background:var(--gbg);backdrop-filter:blur(var(--blur)) saturate(200%);-webkit-backdrop-filter:blur(var(--blur)) saturate(200%);border:1px solid var(--gborder);border-radius:var(--cr);overflow:hidden;box-shadow:0 8px 40px var(--gshadow),inset 0 2px 0 var(--gshine),inset 0 0 0 .5px rgba(255,255,255,.04);transition:background .6s,border-color .6s}
+.card-inner{position:relative;background:var(--gbg);backdrop-filter:blur(var(--blur)) saturate(200%);-webkit-backdrop-filter:blur(var(--blur)) saturate(200%);border:1px solid var(--gborder);border-radius:var(--cr);overflow:hidden;box-shadow:0 8px 40px var(--gshadow),inset 0 2px 0 var(--gshine),inset 0 0 0 .5px rgba(255,255,255,.04);transition:background .6s,border-color .6s}
+.swipe-tint{position:absolute;inset:0;pointer-events:none;z-index:5;background:transparent;transition:background .12s}
+.undo-btn{position:fixed;bottom:152px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:6px;padding:9px 18px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.25);background:rgba(20,20,35,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff;z-index:998;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.undo-btn.show{display:flex}
 .cimg{position:relative;height:222px;overflow:hidden;background:var(--gbg)}
 .cimg img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .card[data-p="0"] .cimg img:hover{transform:scale(1.03)}
@@ -220,6 +223,7 @@ html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;back
   <div class="footer">Built with ❤️ by <a href="https://prashantbhatt.net" target="_blank">Prashant Bhatt</a></div>
 </div>
 <div class="toast" id="toast"></div>
+<button class="undo-btn" id="undoBtn" onclick="undoSwipe()">↺ Undo</button>
 
 <!-- ONBOARD -->
 <div id="onboard" style="position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;transform:translateY(-72px);">
@@ -234,6 +238,7 @@ const REFRESH=3600*1000;
 let articles=[],filtered=[],topIdx=0,currentCat="All";
 let saved=new Map();
 let dragCard=null,dragging=false,startX=0,startY=0,curX=0;
+let lastSwipe=null,undoTimer=null;
 let currentTab="foryou";
 
 async function loadNews(){
@@ -283,7 +288,7 @@ function makeCard(item,pos){
   const el=document.createElement("div");
   el.className="card";el.dataset.p=pos;el.dataset.id=item.id;
   const isSaved=saved.has(item.id);
-  el.innerHTML=`<div class="card-inner"><div class="cimg"><img src="${item.img}" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'"><div class="cimg-ov"></div><div class="cat-badge">${item.category}</div><div class="src-badge">▲ ${item.source} · ${item.time}</div></div><div class="cbody"><div class="c-hl">${item.headline}</div><div class="c-desc">${item.desc}</div><div class="c-foot"><div class="c-src"><div class="c-av" style="background:${item.color}">${item.source[0].toUpperCase()}</div><span class="c-sn">${item.source}</span></div><div class="c-acts"><div class="c-act" id="sv-${item.id}" onclick="event.stopPropagation();doSave(${item.id})">${isSaved?"✅":"🔖"}</div><a class="c-act" href="${item.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗️</a></div></div></div></div>`;
+  el.innerHTML=`<div class="card-inner"><div class="swipe-tint"></div><div class="cimg"><img src="${item.img}" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80'"><div class="cimg-ov"></div><div class="cat-badge">${item.category}</div><div class="src-badge">▲ ${item.source} · ${item.time}</div></div><div class="cbody"><div class="c-hl">${item.headline}</div><div class="c-desc">${item.desc}</div><div class="c-foot"><div class="c-src"><div class="c-av" style="background:${item.color}">${item.source[0].toUpperCase()}</div><span class="c-sn">${item.source}</span></div><div class="c-acts"><div class="c-act" id="sv-${item.id}" onclick="event.stopPropagation();doSave(${item.id})">${isSaved?"✅":"🔖"}</div><a class="c-act" href="${item.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗️</a></div></div></div></div>`;
   return el;
 }
 
