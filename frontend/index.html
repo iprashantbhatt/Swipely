@@ -322,6 +322,7 @@ function swipe(dir){
   const card=dragCard;
   const item=filtered[topIdx];
   if(dir==="right"&&item) doSave(item.id);
+if(item){lastSwipe={id:item.id,dir:dir,idx:topIdx};showUndo();}
   card.style.transition="transform .42s cubic-bezier(.55,0,1,.5),opacity .42s";
   card.style.transform=dir==="left"?"translateX(-160%) rotate(-20deg)":"translateX(160%) rotate(20deg)";
   card.style.opacity="0";
